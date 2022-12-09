@@ -65,7 +65,7 @@ open class BaseApp : MultiDexApplication() {
          */
         var VERSION_NAME: String = ""
 
-        var HTTP_VERSION_NAME: String = "4.0.0"
+        var HTTP_VERSION_NAME: String = "4.0.2"
 
         /**
          * 应用版本号

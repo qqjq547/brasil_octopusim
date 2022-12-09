@@ -50,12 +50,12 @@ class LoginFirstActivity : BaseBusinessActivity<LoginContract.Presenter>(), Logi
 
     override fun getLayoutId() = R.layout.bus_login_activity_first
 
-    private val type by lazy { intent.getIntExtra("type", 1) }
+    //private val type by lazy { intent.getIntExtra("type", 1) }
     private val mIsCanCancel by lazy { intent.getBooleanExtra("isCancel", false) }
     private val mDefaultAreaCode by lazy { intent.getStringExtra("area_code") ?: "" }
 
     //0:密码登录   1：验证码登录
-    private var mType = 1
+    private var mType = 0
     private var mCountyStr: String = "+84"
     private var mPasswordOK = false
     private var mContentOK = false
@@ -74,7 +74,7 @@ class LoginFirstActivity : BaseBusinessActivity<LoginContract.Presenter>(), Logi
     override fun isActive() = isFinishing
 
     override fun initView() {
-        mType = type
+       // mType = type
 
         custom_toolbar.showRightTextView(
             getString(R.string.bus_login_register),
@@ -176,7 +176,7 @@ class LoginFirstActivity : BaseBusinessActivity<LoginContract.Presenter>(), Logi
 
     @SuppressLint("CheckResult")
     override fun initListen() {
-        linear_layout_all.viewTreeObserver.addOnGlobalLayoutListener {
+        /*linear_layout_all.viewTreeObserver.addOnGlobalLayoutListener {
             val r = Rect()
             //获取当前界面可视部分
             this@LoginFirstActivity.window.decorView.getWindowVisibleDisplayFrame(r)
@@ -191,7 +191,7 @@ class LoginFirstActivity : BaseBusinessActivity<LoginContract.Presenter>(), Logi
                 linear_layout_all.translationY = 0f
                 custom_toolbar.androidMTransparency(false)
             }
-        }
+        }*/
 
         text_view_change.setOnClickListener {
             mType = if (mType == 0) 1 else 0

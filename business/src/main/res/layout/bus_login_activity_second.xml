@@ -67,7 +67,9 @@
             android:paddingBottom="20dp"
             android:textColor="@color/c178aff"
             android:textSize="12sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:visibility="gone"
+            />
 
         <View
             android:layout_width="1px"

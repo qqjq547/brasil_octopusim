@@ -5,6 +5,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Rect
 import android.net.Uri
+import android.os.CountDownTimer
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextUtils
@@ -38,6 +39,7 @@ import framework.telegram.ui.utils.KeyboardktUtils
 import framework.telegram.ui.utils.NavBarUtils
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.bus_login_activity_register.*
+import java.util.Timer
 
 /**
  * Created by lzh on 19-5-16.
@@ -169,7 +171,7 @@ class RegisterActivity : BaseBusinessActivity<RegisterContract.Presenter>(), Reg
                 setTextContent()
             }
 
-        linear_layout_all.viewTreeObserver.addOnGlobalLayoutListener {
+        /*linear_layout_all.viewTreeObserver.addOnGlobalLayoutListener {
             val r = Rect()
             //获取当前界面可视部分
             this@RegisterActivity.window.decorView.getWindowVisibleDisplayFrame(r)
@@ -184,7 +186,7 @@ class RegisterActivity : BaseBusinessActivity<RegisterContract.Presenter>(), Reg
                 linear_layout_all.translationY = 0f
                 custom_toolbar.androidMTransparency(false)
             }
-        }
+        }*/
         edit_text_phone.setText(mDefaultPhone)
     }
 
@@ -249,11 +251,45 @@ class RegisterActivity : BaseBusinessActivity<RegisterContract.Presenter>(), Reg
         finish()
     }
 
+    var mCountDownTimer: CountDownTimer ? = null
+
     override fun sendCodeSuccess(str: String?, time: Int) {
+
+
+
+
+
+
         dialog?.dismiss()
         if (!TextUtils.isEmpty(str)) {
             toast(str.toString())
         }
+
+        // 倒计时
+
+        text_view_register.isEnabled = false
+        text_view_register.background = getSimpleDrawable(R.drawable.common_corners_trans_d4d6d9_6_0)
+
+        mCountDownTimer?.let {
+
+            mCountDownTimer!!.cancel()
+        }
+
+        mCountDownTimer = object :CountDownTimer(1000 * 60, 1000){
+
+            override fun onTick(millisUntilFinished: Long) {
+                text_view_register.text = "${millisUntilFinished/1000%60}S"
+            }
+
+            override fun onFinish() {
+                text_view_register.isEnabled = true
+                text_view_register.background = getSimpleDrawable(R.drawable.common_corners_trans_178aff_6_0)
+                text_view_register.text = resources.getText(R.string.bus_get_sms_code)
+                mCountDownTimer = null
+            }
+        }.start()
+
+
         ARouter.getInstance().build(Constant.ARouter.ROUNTE_BUS_LOGIN_GET_SMS_CODE)
             .withString("countryCode", mCountyStr)
             .withString("phone", edit_text_phone.text.trim().toString())
@@ -299,6 +335,14 @@ class RegisterActivity : BaseBusinessActivity<RegisterContract.Presenter>(), Reg
                     mPresenter?.setCountDown(data?.getLongExtra(GET_SMSCODE_DATA_TIME, 0) ?: 0L)
                 }
             }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mCountDownTimer?.let {
+
+            mCountDownTimer!!.cancel()
         }
     }
 }
