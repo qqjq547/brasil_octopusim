@@ -46,6 +46,7 @@ dependencies {
     api project(path: ':common')
     api project(path: ':message_bridge')
     api project(path: ':business_bridge')
+    api project(path: ':business')
     // kotlin支持
     api 'org.jetbrains.kotlin:kotlin-stdlib:1.6.10'
     // netty网络库

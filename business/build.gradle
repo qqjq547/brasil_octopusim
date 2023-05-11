@@ -52,6 +52,10 @@ dependencies {
     // arouter支持
     kapt 'com.alibaba:arouter-compiler:1.2.2'
 
+    api 'com.amazonaws:aws-android-sdk-core:2.6.19'
+    api 'com.amazonaws:aws-android-sdk-s3:2.6.19'
+    api 'com.amazonaws:aws-android-sdk-ddb:2.6.19'
+
 }
 
 buildscript {

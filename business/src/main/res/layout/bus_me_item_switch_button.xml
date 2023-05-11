@@ -5,12 +5,13 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:paddingLeft="14dp"
+    android:paddingRight="14dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="52dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="horizontal"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
@@ -22,7 +23,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <framework.telegram.ui.switchbutton.SwitchButton
             android:id="@+id/switch_button"
@@ -30,8 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             SwitchButton:onColor="@color/c178aff"
-            SwitchButton:thumb_height="21dp"
-            SwitchButton:thumb_width="21dp" />
+            SwitchButton:thumb_height="20dp"
+            SwitchButton:thumb_width="20dp" />
 
     </LinearLayout>
 

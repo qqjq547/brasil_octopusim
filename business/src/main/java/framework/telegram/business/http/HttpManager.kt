@@ -44,7 +44,7 @@ object HttpManager {
     private val defaultLoggingInterceptor: framework.telegram.support.system.network.http.log.LoggingInterceptor by lazy {
         framework.telegram.support.system.network.http.log.LoggingInterceptor.Builder()
                 .loggable(BuildConfig.DEBUG)
-                .setLevel(framework.telegram.support.system.network.http.log.Level.HEADERS)
+                .setLevel(framework.telegram.support.system.network.http.log.Level.BASIC)
                 .request("Request")
                 .response("Response")
                 .logger { _, tag, msg ->
@@ -113,7 +113,7 @@ fun getClientInfo(): CommonProto.ClientInfo {
 
     return CommonProto.ClientInfo.newBuilder()
             .setPlat(CommonProto.Platform.ANDROID)
-            .setLanguage(getAppLanguage())
+            .setLanguage(7)
             .setAppVer(VersionUtils.getVersionName(BaseApp.HTTP_VERSION_NAME))
             .setPackageCode(BaseApp.app.getPackageChannel().channelCode)
             .setSessionId(accountInfo.getSessionId()).build()
@@ -122,7 +122,7 @@ fun getClientInfo(): CommonProto.ClientInfo {
 fun getClientInfoWithOutSessionId(): CommonProto.ClientInfo {
     return CommonProto.ClientInfo.newBuilder()
             .setPlat(CommonProto.Platform.ANDROID)
-            .setLanguage(getAppLanguage())
+            .setLanguage(7)
             .setAppVer(VersionUtils.getVersionName(BaseApp.HTTP_VERSION_NAME))
             .setPackageCode(BaseApp.app.getPackageChannel().channelCode)
             .build()
@@ -144,7 +144,23 @@ fun getAppLanguage(): Int {
             lang = 4
         }
         LocalManageUtil.THAI -> {
+            lang = 9
+        }
+
+        LocalManageUtil.ES_MX -> {
             lang = 5
+        }
+
+        LocalManageUtil.HI_IN -> {
+            lang = 6
+        }
+
+        LocalManageUtil.PT_BR -> {
+            lang = 7
+        }
+
+        LocalManageUtil.TR_TR -> {
+            lang = 8
         }
     }
     return lang

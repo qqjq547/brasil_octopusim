@@ -75,9 +75,9 @@ class MeFragment : BaseBusinessFragment<MeDetailContract.Presenter>(), MeDetailC
 
         if (BuildConfig.DEBUG) {
             text_view_debug_name.text =
-                    "手机号 ：${accountInfo?.getPhone()} \n" +
+                    "Número de telefone ：${accountInfo?.getPhone()} \n" +
                             "uid ：${accountInfo?.getUserId()} \n" +
-                            "昵称 ：${accountInfo?.getNickName()} \n"
+                            "Apelido ：${accountInfo?.getNickName()} \n"
         }
         text_view_68_number.text = getString(R.string.six_eight_number) + ":" + accountInfo?.getIdentify()
 

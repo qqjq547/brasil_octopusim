@@ -12,7 +12,8 @@ object Constant {
     object Common {
 
         var LOGIN_HTTP_HOST =
-            if (JENKINS_IS_TEST_SERVER) "http://login.jargutech.com:8080" else "https://login.bufag3.com"
+           // if (JENKINS_IS_TEST_SERVER) "http://login.jargutech.com:8080" else "https://login.lamboim.live"
+            if (JENKINS_IS_TEST_SERVER) "http://login.jargutech.com:8080" else "https://login.futeapi.com"
 
         var BIZ_HTTP_HOST: String = ""
 

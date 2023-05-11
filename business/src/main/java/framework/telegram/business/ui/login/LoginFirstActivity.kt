@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Rect
+import android.os.CountDownTimer
 import android.text.Editable
 import android.text.InputFilter
 import android.text.TextUtils
@@ -56,7 +57,7 @@ class LoginFirstActivity : BaseBusinessActivity<LoginContract.Presenter>(), Logi
 
     //0:密码登录   1：验证码登录
     private var mType = 1
-    private var mCountyStr: String = "+84"
+    private var mCountyStr: String = "+55"
     private var mPasswordOK = false
     private var mContentOK = false
     private var mPasswordType = 0
@@ -279,6 +280,9 @@ class LoginFirstActivity : BaseBusinessActivity<LoginContract.Presenter>(), Logi
             toast(str.toString())
         }
 
+
+        startGetSmsCodeCountDown(time)
+
         ARouter.getInstance().build(Constant.ARouter.ROUNTE_BUS_LOGIN_GET_SMS_CODE)
             .withString("countryCode", mCountyStr)
             .withString("phone", edit_text_phone.text.trim().toString())
@@ -355,10 +359,15 @@ class LoginFirstActivity : BaseBusinessActivity<LoginContract.Presenter>(), Logi
             text_view_login.isEnabled = true
             text_view_login.background =
                 getSimpleDrawable(R.drawable.common_corners_trans_178aff_6_0)
-        } else if (mContentOK && mType != 0) {
-            text_view_login.isEnabled = true
-            text_view_login.background =
-                getSimpleDrawable(R.drawable.common_corners_trans_178aff_6_0)
+        } else if (mContentOK && mType != 0) {// 验证码
+
+
+            if(isDuringCountDown == false){ // 非倒计时期间
+                text_view_login.isEnabled = true
+                text_view_login.background =
+                    getSimpleDrawable(R.drawable.common_corners_trans_178aff_6_0)
+            }
+
         } else {
             text_view_login.isEnabled = false
             text_view_login.background =
@@ -392,5 +401,36 @@ class LoginFirstActivity : BaseBusinessActivity<LoginContract.Presenter>(), Logi
                 }
             }
         }
+    }
+
+
+    private var isDuringCountDown = false
+
+    private fun startGetSmsCodeCountDown(totalTimeSecond: Int){
+
+        isDuringCountDown = true
+
+        text_view_login.isEnabled = false
+        text_view_login.background = getSimpleDrawable(R.drawable.common_corners_trans_d4d6d9_6_0)
+
+        text_view_login.text = "contagem regressiva:" + totalTimeSecond + "S"
+
+
+        object : CountDownTimer(totalTimeSecond * 1000L,1000){
+
+            override fun onTick(millisUntilFinished: Long) {
+                text_view_login.text = "contagem regressiva:" + millisUntilFinished/1000%60 + "S"
+            }
+
+            override fun onFinish() {
+
+                text_view_login.text = getString(R.string.bus_get_sms_code)
+
+                isDuringCountDown = false
+
+                setLoginBtn()
+            }
+        }.start()
+
     }
 }

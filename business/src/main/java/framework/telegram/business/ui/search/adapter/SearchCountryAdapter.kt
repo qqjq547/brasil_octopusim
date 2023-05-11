@@ -51,7 +51,7 @@ class SearchCountryAdapter : BaseSearchAdapter<MultiItemEntity, BaseViewHolder>(
         when (item.itemType) {
             Constant.Search.SEARCH_COUNTRY -> {
                 if (item is CountryCodeInfoBean) {
-                    helper.getView<TextView>(R.id.text_view_name)?.text = item.getNameByLanguage()
+                    helper.getView<TextView>(R.id.text_view_name)?.text = item.countryNameUS
                     helper.getView<TextView>(R.id.text_view_code)?.text = "+" + item.getCountryCode()
                     helper.itemView.setOnClickListener {
                         EventBus.publishEvent(SelectCountryEvent("+" + item.getCountryCode()))

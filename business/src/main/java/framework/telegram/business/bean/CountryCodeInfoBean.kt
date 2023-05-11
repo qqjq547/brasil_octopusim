@@ -16,7 +16,7 @@ class CountryCodeInfoBean : Serializable, MultiItemEntity {
 
     private var countryCode: String? = null
     private var countryName: String? = null
-    private var countryNameUS: String? = null
+    var countryNameUS: String? = null
     private var countryNameTW: String? = null
     private var pinYinHead: String? = null
     private var englishHead: String? = null
@@ -86,6 +86,7 @@ class CountryCodeInfoBean : Serializable, MultiItemEntity {
         private const val serialVersionUID = -3611096875797761452L
 
         fun copyTo(target: CountryCodeInfoBean, oldBean: CountryCodeInfoBean) {
+            target.countryNameUS = oldBean.countryNameUS
             target.countryCode = oldBean.countryCode
             target.countryName = oldBean.countryName
             target.countryNameTW = oldBean.countryNameTW

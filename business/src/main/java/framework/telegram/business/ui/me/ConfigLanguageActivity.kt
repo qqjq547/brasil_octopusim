@@ -49,6 +49,12 @@ class ConfigLanguageActivity : BaseBusinessActivity<InfoContract.Presenter>() {
         iv_en.setImageResource(0)
         iv_thai.setImageResource(0)
         iv_vi.setImageResource(0)
+
+        iv_mx.setImageResource(0)
+        iv_in.setImageResource(0)
+        iv_br.setImageResource(0)
+        iv_tr.setImageResource(0)
+
         when(LocalManageUtil.getSelectLanguage()){
             LocalManageUtil.FOLLOW_SYSTEM->{
                 iv_follow_system.setImageResource(R.drawable.common_contacts_icon_check_selected)
@@ -67,6 +73,23 @@ class ConfigLanguageActivity : BaseBusinessActivity<InfoContract.Presenter>() {
             }
             LocalManageUtil.VI->{
                 iv_vi.setImageResource(R.drawable.common_contacts_icon_check_selected)
+            }
+
+            LocalManageUtil.ES_MX->{
+                iv_mx.setImageResource(R.drawable.common_contacts_icon_check_selected)
+            }
+
+            LocalManageUtil.HI_IN->{
+                iv_in.setImageResource(R.drawable.common_contacts_icon_check_selected)
+            }
+
+
+            LocalManageUtil.PT_BR->{
+                iv_br.setImageResource(R.drawable.common_contacts_icon_check_selected)
+            }
+
+            LocalManageUtil.TR_TR->{
+                iv_tr.setImageResource(R.drawable.common_contacts_icon_check_selected)
             }
         }
     }
@@ -89,6 +112,22 @@ class ConfigLanguageActivity : BaseBusinessActivity<InfoContract.Presenter>() {
         }
         fl_vi.setOnClickListener {
             switchLanguage(LocalManageUtil.VI)
+        }
+
+        fl_mx.setOnClickListener {
+            switchLanguage(LocalManageUtil.ES_MX)
+        }
+
+        fl_in.setOnClickListener {
+            switchLanguage(LocalManageUtil.HI_IN)
+        }
+
+        fl_br.setOnClickListener {
+            switchLanguage(LocalManageUtil.PT_BR)
+        }
+
+        fl_tr.setOnClickListener {
+            switchLanguage(LocalManageUtil.TR_TR)
         }
     }
 

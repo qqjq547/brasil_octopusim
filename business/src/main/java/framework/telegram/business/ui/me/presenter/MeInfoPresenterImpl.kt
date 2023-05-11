@@ -112,7 +112,7 @@ class MeInfoPresenterImpl : MeInfoContract.Presenter {
         UploadManager.uploadFile(mActivity, uri.toString(), CommonProto.AttachType.PIC, CommonProto.AttachWorkSpaceType.COMMON, {
             savePicInfo(it)
         }, {
-
+            mView.showErrMsg("Falha ao carregar a imagem")
         })
     }
 

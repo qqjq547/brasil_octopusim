@@ -14,7 +14,12 @@ public class LocalManageUtil {
     public static final int TRADITIONAL_CHINESE = 2;
     public static final int ENGLISH = 3;
     public static final int VI = 4;
-    public static final int THAI = 5;
+    public static final int THAI = 9;
+
+    public static final int ES_MX = 5; // 墨西哥西班牙语
+    public static final int HI_IN = 6; // 印度
+    public static final int PT_BR = 7; // 巴西葡萄牙语
+    public static final int TR_TR = 8; // 土耳其语
 
     private static int mSelectLanguage = -1;
 
@@ -35,6 +40,18 @@ public class LocalManageUtil {
                 return THAI;
             case "vi":
                 return VI;
+
+            case "mx":
+                return ES_MX;
+
+                case "in":
+                return HI_IN;
+
+            case "br":
+                return PT_BR;
+
+            case "tr":
+                return TR_TR;
             default:
                 return ENGLISH;
         }
@@ -64,6 +81,31 @@ public class LocalManageUtil {
                 return new Locale("th");
             case VI:
                 return new Locale("vi");
+
+            case ES_MX:
+                return new Locale("mx");
+
+            case HI_IN:
+                return new Locale("in");
+
+            case PT_BR:
+                return new Locale("br");
+
+            case TR_TR:
+                return new Locale("tr");
+
+           /* case ES_MX:
+
+
+            case HI_IN:
+
+
+            case PT_BR:
+
+
+            case TR_TR:
+                return Locale.CHINA;*/
+
             default:
                 return Locale.ENGLISH;
         }

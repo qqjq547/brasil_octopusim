@@ -96,6 +96,8 @@
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="21dp"
             >
 
             <TextView
@@ -104,11 +106,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:gravity="center"
-                android:paddingLeft="10dp"
+                android:paddingLeft="0dp"
                 android:paddingTop="20dp"
-                android:paddingRight="10dp"
+                android:paddingRight="0dp"
                 android:paddingBottom="20dp"
-                android:layout_marginLeft="44dp"
                 android:text="@string/string_forget_password"
                 android:textColor="@color/c178aff"
                 android:visibility="gone"
@@ -123,8 +124,6 @@
                 android:gravity="center"
                 android:paddingLeft="10dp"
                 android:paddingTop="20dp"
-                android:layout_marginLeft="44dp"
-                android:layout_marginRight="44dp"
                 android:paddingRight="10dp"
                 android:paddingBottom="20dp"
                 android:text=""

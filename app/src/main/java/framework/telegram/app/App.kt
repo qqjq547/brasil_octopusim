@@ -99,8 +99,8 @@ class App : BaseApp() {
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         //用户在系统设置页面切换语言时保存系统选择语言(为了选择随系统语言时使用，如果不保存，切换语言后就拿不到了）
-        LocalManageUtil.saveSystemCurrentLanguage(applicationContext, newConfig)
-        MultiLanguage.onConfigurationChanged(applicationContext)
+        /*LocalManageUtil.saveSystemCurrentLanguage(applicationContext, newConfig)
+        MultiLanguage.onConfigurationChanged(applicationContext)*/
     }
 
     override fun onCreate() {
@@ -146,10 +146,10 @@ class App : BaseApp() {
             PinCodeUnlock.getInstance().init(applicationContext)
 
             //初始化多语言
-            MultiLanguage.init {
+           /* MultiLanguage.init {
                 return@init LocalManageUtil.getSetLanguageLocale()
             }
-            MultiLanguage.setApplicationLanguage(this)
+            MultiLanguage.setApplicationLanguage(this)*/
 
             //注册事件
             registerEvents()

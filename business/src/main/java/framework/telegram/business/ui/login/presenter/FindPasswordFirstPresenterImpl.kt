@@ -31,6 +31,13 @@ class FindPasswordFirstPresenterImpl : FindPasswordFirstContract.Presenter {
     }
 
     override fun sendCode(phone: String, countryCode: String) {
+
+        /*if(EmulatorDetectUtil.isEmulator(mContext)){
+
+
+        }*/
+
+
         HttpManager.getStore(LoginHttpProtocol::class.java)
                 .getSmsCode(object : HttpReq<SysProto.GetSmsCodeReq>() {
                     override fun getData(): SysProto.GetSmsCodeReq {

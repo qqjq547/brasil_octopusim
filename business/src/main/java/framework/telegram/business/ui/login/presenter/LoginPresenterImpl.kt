@@ -2,27 +2,24 @@ package framework.telegram.business.ui.login.presenter
 
 import android.content.Context
 import android.text.TextUtils
-import android.util.Log
+import android.widget.Toast
 import com.im.domain.pb.CommonProto
 import com.im.domain.pb.LoginProto
 import com.im.domain.pb.SysProto
-import com.im.domain.pb.UserProto
 import com.trello.rxlifecycle3.android.ActivityEvent
 import com.umeng.analytics.MobclickAgent
 import framework.telegram.business.*
 import framework.telegram.business.bridge.Constant
 import framework.telegram.business.bridge.Constant.Result.ACCOUNT_IS_BANNED
 import framework.telegram.business.bridge.Constant.Result.MOBILE_NO_REGISTER
-import framework.telegram.business.bridge.bean.AccountInfo
 import framework.telegram.business.http.HttpException
 import framework.telegram.business.http.HttpManager
 import framework.telegram.business.http.creator.LoginHttpReqCreator
 import framework.telegram.business.http.creator.SysHttpReqCreator
-import framework.telegram.business.http.creator.UserHttpReqCreator
 import framework.telegram.business.http.getResult
 import framework.telegram.business.http.protocol.LoginHttpProtocol
-import framework.telegram.business.http.protocol.SystemHttpProtocol
 import framework.telegram.business.sp.CommonPref
+import framework.telegram.business.utils.CpuUtils
 import framework.telegram.support.BaseApp
 import framework.telegram.support.account.AccountManager
 import framework.telegram.support.system.network.http.HttpReq
@@ -31,6 +28,7 @@ import framework.telegram.support.tools.HexString
 import framework.telegram.support.tools.MD5
 import io.reactivex.Observable
 import yourpet.client.android.sign.NativeLibUtil
+
 
 class LoginPresenterImpl : LoginContract.Presenter {
 
@@ -117,6 +115,7 @@ class LoginPresenterImpl : LoginContract.Presenter {
     }
 
     override fun sendCode(phone: String, countryCode: String) {
+
         val curTime =  System.currentTimeMillis()
         if (phone == mLastPhone && countryCode ==mLastCountryCode && curTime- mCodeCountTime  <60*1000){
             mView.sendCodeSuccess("",60- ((curTime- mCodeCountTime)/1000).toInt())

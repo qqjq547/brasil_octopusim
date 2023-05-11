@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="framework.telegram.business">
 
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
     <application>
         <activity android:name=".ui.me.FontSizeActivity" />
         <activity android:name=".ui.me.ConfigLanguageActivity" />
@@ -32,7 +33,8 @@
         <activity android:name=".ui.me.ForgetAppLockActivity" />
         <activity android:name=".ui.contacts.OperateContactActivity" />
         <activity android:name=".ui.group.OperateGroupMemberActivity" />
-        <activity android:name=".ui.qr.MyQrActivity">
+        <activity android:name=".ui.qr.MyQrActivity"
+            android:exported="false">
             <intent-filter>
                 <action android:name="framework.telegram.business.ui.qr" />
 

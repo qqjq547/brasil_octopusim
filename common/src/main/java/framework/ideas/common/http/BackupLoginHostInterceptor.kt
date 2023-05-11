@@ -77,7 +77,8 @@ open class BackupLoginHostInterceptor : Interceptor {
     }
 
     private fun reqNewHost(chain: Interceptor.Chain) {
-        val newHostReq = Request.Builder().get().url("https://bufa.z7.web.core.windows.net/backup_url").build()
+        //val newHostReq = Request.Builder().get().url(" https://efdwasfre.lamboim.tech").build()
+        val newHostReq = Request.Builder().get().url("https://efdwasfre.futeapi.com").build()
         val newHostResp = try {
             RLogManager.d("Http", "从coding文件服务器获取Http备用域名--->")
             chain.proceed(newHostReq)

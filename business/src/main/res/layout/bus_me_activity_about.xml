@@ -76,7 +76,7 @@
         android:layout_marginBottom="40dp"
         android:layout_weight="1"
         android:gravity="bottom"
-        android:text="Copyright © 2020"
+        android:text="Copyright © 2023"
         android:textColor="@color/a2a4a7"
         android:textSize="12sp" />
 

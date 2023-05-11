@@ -19,14 +19,14 @@ object UserInfoCheckUtil {
      * @return
      */
     fun checkMobile(context: Context, mobile: String, countyCode: String): Boolean {
-        if (ValidationUtils.isEmpty(mobile)) {
+       /* if (ValidationUtils.isEmpty(mobile)) {
             context.toast(context.getString(R.string.bus_login_mobile_input_error_1))
             return false
         }
         if (!phoneNumberIsAvailable(mobile, countyCode)) {
             context.toast(context.getString(R.string.bus_login_mobile_input_error_2))
             return false
-        }
+        }*/
         return true
     }
 

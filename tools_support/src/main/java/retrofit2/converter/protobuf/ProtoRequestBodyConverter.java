@@ -15,6 +15,8 @@
  */
 package retrofit2.converter.protobuf;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
@@ -50,6 +52,7 @@ final class ProtoRequestBodyConverter implements Converter<HttpReq, RequestBody>
         ByteBuffer contentBuffer = null;
         byte[] content = value.getData().toByteArray();
         if (content != null) {
+            Log.e("Request", value.getData().toString());
             content = NativeLibUtil.getInstance().sign1(BaseApp.app, BaseApp.Companion.getIS_TEST_SERVER(), content, 1);
 //            content = ZipUtils.gZip(content);
             contentBuffer = ByteBuffer.allocate(2 + 4 + content.length);

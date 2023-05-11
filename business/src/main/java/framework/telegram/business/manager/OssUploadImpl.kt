@@ -21,6 +21,7 @@ import com.alibaba.sdk.android.oss.model.PutObjectRequest
 import com.alibaba.sdk.android.oss.model.PutObjectResult
 import com.im.domain.pb.CommonProto
 import com.im.domain.pb.SysProto
+import com.im.domain.pb.UploadFileProto
 import com.trello.rxlifecycle3.android.lifecycle.kotlin.bindToLifecycle
 import framework.telegram.business.http.HttpManager
 import framework.telegram.business.http.creator.SysHttpReqCreator
@@ -28,6 +29,8 @@ import framework.telegram.business.http.getResult
 import framework.telegram.business.http.protocol.LoginHttpProtocol
 import framework.telegram.support.BaseApp
 import framework.telegram.support.system.network.http.HttpReq
+import framework.telegram.support.system.upload.Constant
+import framework.telegram.support.system.upload.UploadManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.io.File
@@ -97,9 +100,9 @@ object OssUploadImpl :InterfaceUpload{
                                        complete: (String) -> Unit,
                                        error: () -> Unit) {
         HttpManager.getStore(LoginHttpProtocol::class.java)
-                .getUploadUrl(object : HttpReq<SysProto.GetUploadUrlReq>() {
-                    override fun getData(): SysProto.GetUploadUrlReq {
-                        return SysHttpReqCreator.getUploadUrl(spaceType,type)
+                .getUploadUrl(object : HttpReq<UploadFileProto.GetUploadUrlReq>() {
+                    override fun getData(): UploadFileProto.GetUploadUrlReq {
+                        return SysHttpReqCreator.getUploadUrl(Constant.Common.UPLOAD_WAY_TYPE as Long ,spaceType,type)
                     }
                 })
                 .getResult(null, {

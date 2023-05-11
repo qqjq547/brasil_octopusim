@@ -29,7 +29,7 @@ class CountryAdapter : AppBaseMultiItemQuickAdapter<CountryCodeInfoBean, BaseVie
                     it.setText(R.id.text_view_head_name,item?.getLetterByLanguage())
                 }
                 Constant.Search.SEARCH_COUNTRY -> {
-                    it.setText(R.id.text_view_name,item?.getNameByLanguage())
+                    it.setText(R.id.text_view_name,item?.countryNameUS)
                     it.setText(R.id.text_view_code,"+"+item?.getCountryCode())
                 }else -> {}
             }

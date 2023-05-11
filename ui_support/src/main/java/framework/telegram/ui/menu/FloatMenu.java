@@ -173,7 +173,7 @@ public class FloatMenu extends PopupWindow {
             textView.setPadding(paddingRight, paddingTop, paddingRight, paddingTop);
 
             LinearLayout.LayoutParams params1 = new LinearLayout.LayoutParams(textWidth, LinearLayout.LayoutParams.WRAP_CONTENT);
-            params1.gravity = Gravity.CENTER;
+            params1.gravity = Gravity.START;
             textView.setLayoutParams(params1);
             textView.setGravity(Gravity.CENTER);
             textView.setTextSize(15);
@@ -193,6 +193,7 @@ public class FloatMenu extends PopupWindow {
             if (i != menuItemList.size() - 1) {
                 View view = new View(context);
                 LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, 1);
+               // params2.gravity = Gravity.START;
                 view.setLayoutParams(params2);
                 view.setBackgroundColor(ContextCompat.getColor(context, mLineColor));
                 layout.addView(view);

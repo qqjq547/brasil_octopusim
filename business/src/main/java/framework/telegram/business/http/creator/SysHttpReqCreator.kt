@@ -2,6 +2,7 @@ package framework.telegram.business.http.creator
 
 import com.im.domain.pb.CommonProto
 import com.im.domain.pb.SysProto
+import com.im.domain.pb.UploadFileProto
 import framework.telegram.business.http.getClientInfo
 import framework.telegram.business.http.getClientInfoWithOutSessionId
 
@@ -53,8 +54,8 @@ class SysHttpReqCreator {
             return SysProto.GetUploadTokenReq.newBuilder().setClientInfo(getClientInfoWithOutSessionId()).build()
         }
 
-        fun getUploadUrl(attachWorkSpaceType: CommonProto.AttachWorkSpaceType, attachType: CommonProto.AttachType): SysProto.GetUploadUrlReq {
-            return SysProto.GetUploadUrlReq.newBuilder().setClientInfo(getClientInfoWithOutSessionId()).setAttachWorkspaceType(attachWorkSpaceType).setAttachType(attachType).build()
+        fun getUploadUrl(uploadType: Long, attachWorkSpaceType: CommonProto.AttachWorkSpaceType, attachType: CommonProto.AttachType): UploadFileProto.GetUploadUrlReq {
+            return UploadFileProto.GetUploadUrlReq.newBuilder().setClientInfo(getClientInfoWithOutSessionId()).setAttachWorkspaceType(attachWorkSpaceType).setAttachType(attachType).setType(uploadType).build()
         }
 
         fun getInviteLink(targetId: Long,type: CommonProto.InviteLinkType): SysProto.GetInviteLinkReq {
@@ -67,6 +68,11 @@ class SysHttpReqCreator {
 
         fun disableAccount(): SysProto.DisableAccountReq {
             return SysProto.DisableAccountReq.newBuilder().setClientInfo(getClientInfo()).build()
+        }
+
+
+        fun getAwsUpload(): UploadFileProto.GetAwsUploadReq {
+            return UploadFileProto.GetAwsUploadReq.newBuilder().setClientInfo(getClientInfoWithOutSessionId()).build()
         }
     }
 }
