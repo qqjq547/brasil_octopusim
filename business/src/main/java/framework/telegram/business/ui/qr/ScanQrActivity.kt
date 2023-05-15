@@ -234,6 +234,7 @@ class ScanQrActivity : CaptureActivity() {
                             }
                         })
                         .getResult(null, { groupDetail ->
+
                             if (groupDetail.bfMember) {
                                 if (groupDetail.groupBase.bfBanned) {
                                     loading.invoke(false)
@@ -245,6 +246,7 @@ class ScanQrActivity : CaptureActivity() {
                                         )
                                         .withString(Constant.ARouter_Key.KEY_QRCODE, qrCode)
                                         .withString(Constant.ARouter_Key.KEY_IDCODE, idCode)
+                                        .withString(KEY_ADD_TOKEN, groupDetail.addToken)
                                         .navigation()
                                     complete.invoke()
                                 } else {
@@ -252,6 +254,7 @@ class ScanQrActivity : CaptureActivity() {
                                     ARouter.getInstance()
                                         .build(framework.telegram.message.bridge.Constant.ARouter.ROUNTE_MSG_GROUP_CHAT_ACTIVITY)
                                         .withLong("targetGid", groupDetail.groupBase.groupId)
+                                        .withString(KEY_ADD_TOKEN, groupDetail.addToken)
                                         .navigation()
                                     complete.invoke()
                                 }
@@ -264,6 +267,7 @@ class ScanQrActivity : CaptureActivity() {
                                     )
                                     .withString(Constant.ARouter_Key.KEY_QRCODE, qrCode)
                                     .withString(Constant.ARouter_Key.KEY_IDCODE, idCode)
+                                    .withString(KEY_ADD_TOKEN, groupDetail.addToken)
                                     .navigation()
                                 complete.invoke()
                             }

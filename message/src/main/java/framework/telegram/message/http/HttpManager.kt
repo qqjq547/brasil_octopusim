@@ -96,7 +96,7 @@ fun getClientInfo(): CommonProto.ClientInfo {
     val accountInfo = AccountManager.getLoginAccount(AccountInfo::class.java)
     return CommonProto.ClientInfo.newBuilder()
             .setPlat(CommonProto.Platform.ANDROID)
-            .setLanguage(getAppLanguage())
+            .setLanguage(7)
             .setAppVer(VersionUtils.getVersionName(BaseApp.HTTP_VERSION_NAME))
             .setPackageCode(BaseApp.app.getPackageChannel().channelCode)
             .setSessionId(accountInfo.getSessionId())
@@ -106,7 +106,7 @@ fun getClientInfo(): CommonProto.ClientInfo {
 fun getClientInfoWithOutSessionId(): CommonProto.ClientInfo {
     return CommonProto.ClientInfo.newBuilder()
             .setPlat(CommonProto.Platform.ANDROID)
-            .setLanguage(getAppLanguage())
+            .setLanguage(7)
             .setAppVer(VersionUtils.getVersionName(BaseApp.HTTP_VERSION_NAME))
             .setPackageCode(BaseApp.app.getPackageChannel().channelCode)
             .build()

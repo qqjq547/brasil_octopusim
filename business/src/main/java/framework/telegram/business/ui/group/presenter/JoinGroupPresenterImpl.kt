@@ -23,16 +23,18 @@ class JoinGroupPresenterImpl : JoinGroupContract.Presenter {
     private val mGroupId: Long
     private val mQrCode: String
     private val mIDCode:String
+    private val mAddToken:String
 
     private var mGroupBase: GroupProto.GroupBase? = null
 
-    constructor(view: JoinGroupContract.View, context: Context?, observable: Observable<ActivityEvent>, groupId: Long, qrCode: String,idCode :String) {
+    constructor(view: JoinGroupContract.View, context: Context?, observable: Observable<ActivityEvent>, groupId: Long, qrCode: String,idCode :String, addToken:String) {
         this.mView = view
         this.mObservalbe = observable
         this.mContext = context
         this.mGroupId = groupId
         this.mQrCode = qrCode
         this.mIDCode = idCode
+        this.mAddToken = addToken
         view.setPresenter(this)
     }
 
@@ -80,7 +82,7 @@ class JoinGroupPresenterImpl : JoinGroupContract.Presenter {
         HttpManager.getStore(GroupHttpProtocol::class.java)
                 .groupJoin(object : HttpReq<GroupProto.GroupJoinReq>() {
                     override fun getData(): GroupProto.GroupJoinReq {
-                        return GroupHttpReqCreator.createGroupJoinReq(groupId, msg, CommonProto.GroupReqType.GROUP_QR_CODE)
+                        return GroupHttpReqCreator.createGroupJoinReq(groupId, msg, CommonProto.GroupReqType.GROUP_QR_CODE, mAddToken)
                     }
                 })
                 .getResult(mObservalbe, {

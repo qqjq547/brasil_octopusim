@@ -9,6 +9,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.im.domain.pb.GroupProto
 import framework.telegram.business.R
 import framework.telegram.business.bridge.Constant
+import framework.telegram.business.bridge.Constant.ARouter_Key.KEY_ADD_TOKEN
 import framework.telegram.business.bridge.Constant.ARouter_Key.KEY_IDCODE
 import framework.telegram.business.bridge.Constant.ARouter_Key.KEY_QRCODE
 import framework.telegram.business.bridge.Constant.ARouter_Key.KEY_TARGET_GID
@@ -45,6 +46,8 @@ class JoinGroupActivity : BaseBusinessActivity<JoinGroupContract.Presenter>(),
 
     private val mIDCode by lazy { intent.getStringExtra(KEY_IDCODE) ?: "" }
 
+    private val mAddToken by lazy { intent.getStringExtra(KEY_ADD_TOKEN) ?: "" }
+
     private var mAppDialog: AppDialog? = null
 
     override fun getLayoutId() = R.layout.bus_group_activity_join
@@ -80,7 +83,7 @@ class JoinGroupActivity : BaseBusinessActivity<JoinGroupContract.Presenter>(),
     }
 
     override fun initData() {
-        JoinGroupPresenterImpl(this, this, lifecycle(), mGroupId, mQrCode, mIDCode).start()
+        JoinGroupPresenterImpl(this, this, lifecycle(), mGroupId, mQrCode, mIDCode, mAddToken).start()
     }
 
     override fun showLoading() {

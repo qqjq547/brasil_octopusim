@@ -77,8 +77,8 @@ class GroupHttpReqCreator {
             return GroupProto.GroupDetailFromQrCodeReq.newBuilder().setClientInfo(getClientInfo()).setGroupId(groupId).setQrCode(qrCode).setIdCode(idCode).build()
         }
 
-        fun createGroupJoinReq(groupId: Long, msg: String, reqType: CommonProto.GroupReqType): GroupProto.GroupJoinReq {
-            return GroupProto.GroupJoinReq.newBuilder().setClientInfo(getClientInfo()).setGroupId(groupId).setMsg(msg).setReqType(reqType).build()
+        fun createGroupJoinReq(groupId: Long, msg: String, reqType: CommonProto.GroupReqType, addToken: String): GroupProto.GroupJoinReq {
+            return GroupProto.GroupJoinReq.newBuilder().setClientInfo(getClientInfo()).setGroupId(groupId).setMsg(msg).setReqType(reqType).setAddToken(addToken).build()
         }
 
         /**
