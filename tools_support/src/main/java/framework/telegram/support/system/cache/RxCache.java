@@ -3,6 +3,7 @@ package framework.telegram.support.system.cache;
 import android.os.Environment;
 import android.os.StatFs;
 
+import framework.telegram.support.BaseApp;
 import framework.telegram.support.system.cache.data.CacheResult;
 import framework.telegram.support.system.cache.diskconverter.IDiskConverter;
 import framework.telegram.support.system.cache.diskconverter.SerializableDiskConverter;
@@ -46,7 +47,7 @@ public final class RxCache {
         if (sDefaultRxCache == null) {
             sDefaultRxCache = new RxCache.Builder()
                     .appVersion(1)
-                    .diskDir(Environment.getDownloadCacheDirectory())
+                    .diskDir(BaseApp.app.getCacheDir())
                     .diskConverter(new SerializableDiskConverter())
                     .setDebug(true)
                     .build();

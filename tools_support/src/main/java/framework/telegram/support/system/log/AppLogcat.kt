@@ -22,7 +22,7 @@ object AppLogcat {
 
         return Logger.Builder.newBuilder(BaseApp.app, "default")
                 .setDebug(BuildConfig.DEBUG)
-                .setWriteToFile(true)
+                .setWriteToFile(false)
                 .setLogLevelsForFile(logLevels)
                 .setLogDir(BaseApp.LOG_DIR_NAME)
                 .setLogSegment(LogSegment.TWENTY_FOUR_HOURS)
@@ -43,7 +43,7 @@ object AppLogcat {
 
         Logger.Builder.newBuilder(BaseApp.app, "default")
                 .setDebug(BuildConfig.DEBUG)
-                .setWriteToFile(true)
+                .setWriteToFile(false)
                 .setLogLevelsForFile(logLevels)
                 .setLogDir(BaseApp.LOG_DIR_NAME)
                 .setLogSegment(LogSegment.TWENTY_FOUR_HOURS)

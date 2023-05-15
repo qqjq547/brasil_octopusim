@@ -8,7 +8,7 @@ ext {
             //公共配置
             buildToolsVersion             : "31.0.0",
             compileVersion                : 31,
-            minSdk                        : 19,
+            minSdk                        : 21,
             targetSdk                     : 31,
             renderscriptTargetApi         : 28,
             renderscriptSupportModeEnabled: true,

@@ -353,9 +353,9 @@ object UploadManager {
     ) {
         ThreadUtils.runOnIOThread {
             val file = File(Uri.parse(filePathUri).path)
-            val encryptFile = File("${Uri.parse(filePathUri).path}___encrypt}")
+            val encryptFile = File("${framework.telegram.ui.utils.FileUtils.getBitmapThumbFilePath(file)}___encrypt}")
             val encryptTmpFile =
-                File("${Uri.parse(filePathUri).path}___encrypt___${System.currentTimeMillis()}")
+                File("${framework.telegram.ui.utils.FileUtils.getBitmapThumbFilePath(file)}___encrypt___${System.currentTimeMillis()}")
 
             try {
                 // 加密附件
@@ -574,8 +574,8 @@ object UploadManager {
     ) {
         if (UPLOAD_WAY_TYPE == 0) {
             OssUploadImpl.createFileUploadTask(file, type, spaceType, complete, error)
-        } else if(UPLOAD_WAY_TYPE == 2){
-           // AwsUploadImpl.createFileUploadTask(file, type, spaceType, complete, error)
+        } else if(UPLOAD_WAY_TYPE == 1){
+            // AwsUploadImpl.createFileUploadTask(file, type, spaceType, complete, error)
 
             framework.telegram.business.manager.AwsUploadImpl.uploadFile(file, type,spaceType,null,complete,error)
         }else{

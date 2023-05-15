@@ -139,10 +139,10 @@ class GroupSendChatPresenterImpl : GroupSendChatContract.Presenter {
             val chatType = ChatModel.CHAT_TYPE_PVT
             val attachmentKey = SendMessageManager.generateAttachmentKey(chatType, 0, true)
             val maxThumbSize = ScreenUtils.dp2px(BaseApp.app, 240.0f)
-            val thumbFileName = resizeImageFile.absolutePath + "___thumb"
+            val thumbFileName = FileUtils.getBitmapThumbFilePath(resizeImageFile)
             val resizeImageThumbPath = BitmapUtils.revitionImageSize(
                 resizeImageFile.absolutePath,
-                thumbFileName,
+                thumbFileName?:"",
                 maxThumbSize,
                 maxThumbSize
             )
@@ -303,7 +303,7 @@ class GroupSendChatPresenterImpl : GroupSendChatContract.Presenter {
             }
             // 生成视频缩略图
             val firstFrame = mmr.getFrameAtTime(0, MediaMetadataRetriever.OPTION_CLOSEST)
-            val videoThumbFile = File(videoFilePath + "___thumb")
+            val videoThumbFile = File(FileUtils.getBitmapThumbFilePath(File(videoFilePath)) + "___thumb")
             FileUtils.saveBitmap(firstFrame, videoThumbFile)
 
             val chatType = ChatModel.CHAT_TYPE_PVT

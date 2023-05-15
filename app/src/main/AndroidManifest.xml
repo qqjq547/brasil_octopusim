@@ -154,7 +154,7 @@
             android:launchMode="singleTop" />
 
         <activity android:name=".activity.LauncherActivity"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

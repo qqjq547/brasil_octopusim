@@ -35,9 +35,9 @@ object SearchDbManager {
     //todo  1.这里需要做数据队列  2.数据库升级的方法GroupBase
     //TODO 群成员的头像  ，聊天记录 3条的分页，所有数据的分页
 
-    init {
-        System.loadLibrary("sqliteX")
-    }
+//    init {
+//        System.loadLibrary("sqliteX")
+//    }
 
     private var mSqlDb: SQLiteDatabase? = null
 

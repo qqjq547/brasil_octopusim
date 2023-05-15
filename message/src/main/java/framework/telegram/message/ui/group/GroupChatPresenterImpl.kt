@@ -240,7 +240,7 @@ class GroupChatPresenterImpl : GroupChatContract.Presenter,
 
             // 生成视频缩略图
             val firstFrame = mmr.getFrameAtTime(0, MediaMetadataRetriever.OPTION_CLOSEST)
-            val videoThumbFile = File(videoFilePath + "___thumb")
+            val videoThumbFile = File(FileUtils.getBitmapThumbFilePath(File(videoFilePath)) + "___thumb")
             FileUtils.saveBitmap(firstFrame, videoThumbFile)
 
             SendMessageManager.sendVideoMessageToGroup(
