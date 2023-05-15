@@ -789,8 +789,8 @@ public class MessageInputView extends FrameLayout {
     }
 
     private void saveDraft(File file, long recordTime, Integer[] highDArr) {
-        SendMessageManager.INSTANCE.compressVoice(file, mp3File -> {
-            AudioDraft audioDraft = new AudioDraft(mp3File.getAbsolutePath(), recordTime, CastArrayUtil.toPrimitive(highDArr));
+//        SendMessageManager.INSTANCE.compressVoice(file, mp3File -> {
+            AudioDraft audioDraft = new AudioDraft(file.getAbsolutePath(), recordTime, CastArrayUtil.toPrimitive(highDArr));
             getCommonPref().putAudioRecordDraft(GsonInstanceCreater.INSTANCE.getDefaultGson().toJson(audioDraft));
             getCommonPref().putTextDraft("");
             isSaveToDraft = false;
@@ -800,11 +800,10 @@ public class MessageInputView extends FrameLayout {
             if (isAttachedToWindow()) {
                 showDraft(audioDraft);
             }
-            return null;
-        }, throwable -> {
-            isSaveToDraft = false;
-            return null;
-        });
+//        }, throwable -> {
+//            isSaveToDraft = false;
+//            return null;
+//        });
     }
 
     private void deleteDraft() {

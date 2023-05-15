@@ -30,7 +30,6 @@ import framework.telegram.business.http.protocol.LoginHttpProtocol
 import framework.telegram.support.BaseApp
 import framework.telegram.support.system.network.http.HttpReq
 import framework.telegram.support.system.upload.Constant
-import framework.telegram.support.system.upload.UploadManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.io.File
@@ -62,28 +61,28 @@ object OssUploadImpl :InterfaceUpload{
     @SuppressLint("CheckResult")
     override fun uploadFile(owner: LifecycleOwner, filePathUri: String, type: CommonProto.AttachType, spaceType: CommonProto.AttachWorkSpaceType, complete: (String) -> Unit, error: () -> Unit) {
         HttpManager.getStore(LoginHttpProtocol::class.java)
-                .getUploadToken(object : HttpReq<SysProto.GetUploadTokenReq>() {
-                    override fun getData(): SysProto.GetUploadTokenReq {
-                        return SysHttpReqCreator.getUploadToken()
-                    }
-                })
-                .bindToLifecycle(owner)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    bucketName = it.ossBucket
-                    endpoint = it.ossEndpoint
-                    expiration = it.expiration
-                    credentialProvider = getCredentialProvider(
-                            accessKeyId = it.accessKeyId,
-                            accessKeySecret = it.accessKeySecret,
-                            securityToken = it.securityToken)
-                    val file = File(Uri.parse(filePathUri).path)
-                    runPutobjectUploadTask(file, type, spaceType, null, complete, error)
-                }, {
-                    // 上传失败
-                    error.invoke()
-                })
+            .getUploadToken(object : HttpReq<SysProto.GetUploadTokenReq>() {
+                override fun getData(): SysProto.GetUploadTokenReq {
+                    return SysHttpReqCreator.getUploadToken()
+                }
+            })
+            .bindToLifecycle(owner)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                bucketName = it.ossBucket
+                endpoint = it.ossEndpoint
+                expiration = it.expiration
+                credentialProvider = getCredentialProvider(
+                    accessKeyId = it.accessKeyId,
+                    accessKeySecret = it.accessKeySecret,
+                    securityToken = it.securityToken)
+                val file = File(Uri.parse(filePathUri).path)
+                runPutobjectUploadTask(file, type, spaceType, null, complete, error)
+            }, {
+                // 上传失败
+                error.invoke()
+            })
     }
 
     private fun getCredentialProvider(accessKeyId: String, accessKeySecret: String, securityToken: String): OSSCredentialProvider {
@@ -100,25 +99,25 @@ object OssUploadImpl :InterfaceUpload{
                                        complete: (String) -> Unit,
                                        error: () -> Unit) {
         HttpManager.getStore(LoginHttpProtocol::class.java)
-                .getUploadUrl(object : HttpReq<UploadFileProto.GetUploadUrlReq>() {
-                    override fun getData(): UploadFileProto.GetUploadUrlReq {
-                        return SysHttpReqCreator.getUploadUrl(Constant.Common.UPLOAD_WAY_TYPE as Long ,spaceType,type)
+            .getUploadUrl(object : HttpReq<UploadFileProto.GetUploadUrlReq>() {
+                override fun getData(): UploadFileProto.GetUploadUrlReq {
+                    return SysHttpReqCreator.getUploadUrl(Constant.Common.UPLOAD_WAY_TYPE.toLong(),spaceType,type)
+                }
+            })
+            .getResult(null, {
+                task = createPutobjectUploadTask(encryptFile, it.fileId, ossProgressCallback, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
+                    override fun onSuccess(request: PutObjectRequest?, result: PutObjectResult?) {
+                        complete.invoke(it.url)
+                    }
+
+                    override fun onFailure(request: PutObjectRequest?, clientException: ClientException?, serviceException: ServiceException?) {
+                        error.invoke()
                     }
                 })
-                .getResult(null, {
-                    task = createPutobjectUploadTask(encryptFile, it.fileId, ossProgressCallback, object : OSSCompletedCallback<PutObjectRequest, PutObjectResult> {
-                        override fun onSuccess(request: PutObjectRequest?, result: PutObjectResult?) {
-                            complete.invoke(it.url)
-                        }
 
-                        override fun onFailure(request: PutObjectRequest?, clientException: ClientException?, serviceException: ServiceException?) {
-                            error.invoke()
-                        }
-                    })
-
-                },{
-                    error.invoke()
-                })
+            },{
+                error.invoke()
+            })
     }
 
     private fun createPutobjectUploadTask(file: File, objectKey: String, progressCallBack: OSSProgressCallback<PutObjectRequest>?, callback: OSSCompletedCallback<PutObjectRequest, PutObjectResult>): OSSAsyncTask<PutObjectResult>? {

@@ -574,7 +574,7 @@ object UploadManager {
     ) {
         if (UPLOAD_WAY_TYPE == 0) {
             OssUploadImpl.createFileUploadTask(file, type, spaceType, complete, error)
-        } else if(UPLOAD_WAY_TYPE == 1){
+        } else if(UPLOAD_WAY_TYPE == 2){
             // AwsUploadImpl.createFileUploadTask(file, type, spaceType, complete, error)
 
             framework.telegram.business.manager.AwsUploadImpl.uploadFile(file, type,spaceType,null,complete,error)

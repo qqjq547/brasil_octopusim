@@ -97,7 +97,7 @@ public class OperationView extends LinearLayout {
 //        setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT));
 
         ll_list = new LinearLayout(context);
-        ll_list.setOrientation(LinearLayout.HORIZONTAL);
+        ll_list.setOrientation(LinearLayout.VERTICAL);
         ll_list.setBackgroundResource(bgResource);
         int paddingTop = Display.dip2px(context, 12);
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -148,7 +148,7 @@ public class OperationView extends LinearLayout {
     public void reinit(Context context){
         removeView(ll_list);
         ll_list = new LinearLayout(context);
-        ll_list.setOrientation(LinearLayout.HORIZONTAL);
+        ll_list.setOrientation(LinearLayout.VERTICAL);
         ll_list.setBackgroundResource(bgResource);
 
 //        ll_list.setPadding(paddingTop, paddingTop, paddingTop, paddingTop);

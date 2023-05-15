@@ -79,7 +79,7 @@ object OssUploadImpl : InterfaceUpload {
     ) {
         if (!IS_JENKINS) OSSLog.enableLog()
         var task: OSSAsyncTask<*>? = null
-        fileLog.invoke("开始上传...")
+        fileLog.invoke("oss 开始上传...")
         if (expiration == 0L || credentialProvider == null || bucketName == "" || endpoint == "" || (expiration < System.currentTimeMillis())) {
             fileLog.invoke("获取上传参数...")
             HttpManager.getStore(LoginHttpProtocol::class.java)

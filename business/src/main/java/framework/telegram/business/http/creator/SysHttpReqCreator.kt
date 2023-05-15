@@ -70,7 +70,6 @@ class SysHttpReqCreator {
             return SysProto.DisableAccountReq.newBuilder().setClientInfo(getClientInfo()).build()
         }
 
-
         fun getAwsUpload(): UploadFileProto.GetAwsUploadReq {
             return UploadFileProto.GetAwsUploadReq.newBuilder().setClientInfo(getClientInfoWithOutSessionId()).build()
         }

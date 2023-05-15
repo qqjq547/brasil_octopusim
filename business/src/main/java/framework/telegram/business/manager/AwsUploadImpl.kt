@@ -164,7 +164,7 @@ object AwsUploadImpl : InterfaceUpload {
 
                         processListener?.onProgressChanged(bytesCurrent, bytesTotal) {
 
-                           // transferUtility.cancel(transferObserver.id)
+                            // transferUtility.cancel(transferObserver.id)
                         }
                     }
 

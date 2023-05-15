@@ -40,7 +40,7 @@ object AwsUploadImpl {
         throwableLog: (Throwable) -> Unit
     ) {
         if (!BuildConfig.IS_JENKINS) OSSLog.enableLog()
-        fileLog.invoke("开始上传...")
+        fileLog.invoke("aws 开始上传...")
 
         val progressChangedListener = object : AwsUploadImpl.OnProgressChangedListener{
 

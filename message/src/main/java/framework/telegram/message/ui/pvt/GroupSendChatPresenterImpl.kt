@@ -87,7 +87,7 @@ class GroupSendChatPresenterImpl : GroupSendChatContract.Presenter {
     @SuppressLint("CheckResult")
     override fun sendVoiceMessage(recordTime: Int, recordFilePath: String, highDArr: Array<Int>) {
         mView?.showProcess(0, 100)
-        SendMessageManager.compressVoice(File(recordFilePath), { mp3File ->
+//        SendMessageManager.compressVoice(File(recordFilePath), { mp3File ->
             val chatType = ChatModel.CHAT_TYPE_PVT
             val attachmentKey = SendMessageManager.generateAttachmentKey(chatType, 0, true)
             UploadManager.uploadGroupSendMsg(
@@ -96,7 +96,7 @@ class GroupSendChatPresenterImpl : GroupSendChatContract.Presenter {
                 mMineUid,
                 attachmentKey,
                 "",
-                Uri.fromFile(mp3File).toString(),
+                Uri.fromFile(File(recordFilePath)).toString(),
                 { _, voiceUrl ->
                     getContactModels { list ->
                         SendMessageManager.groupSendVoiceMessage(
@@ -125,12 +125,12 @@ class GroupSendChatPresenterImpl : GroupSendChatContract.Presenter {
                     GroupSendMsgVoice(recordTime, recordFilePath, highDArr)
                 )
             }
-        }) { error ->
-            mView?.showError(
-                BaseApp.app.getString(R.string.string_group_send_upload_fail),
-                GroupSendMsgVoice(recordTime, recordFilePath, highDArr)
-            )
-        }
+//        }) { error ->
+//            mView?.showError(
+//                BaseApp.app.getString(R.string.string_group_send_upload_fail),
+//                GroupSendMsgVoice(recordTime, recordFilePath, highDArr)
+//            )
+//        }
     }
 
     override fun sendImageMessage(imageFilePath: String) {

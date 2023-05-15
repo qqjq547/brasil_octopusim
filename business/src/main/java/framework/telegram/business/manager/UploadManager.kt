@@ -13,16 +13,13 @@ import framework.telegram.support.system.upload.Constant.Common.UPLOAD_WAY_TYPE
 object UploadManager : InterfaceUpload {
 
     override fun uploadFile(owner: LifecycleOwner, filePathUri: String, type: CommonProto.AttachType, spaceType: CommonProto.AttachWorkSpaceType, complete: (String) -> Unit, error: () -> Unit) {
-       /* if (UPLOAD_WAY_TYPE == 0){
+        if (UPLOAD_WAY_TYPE == 0){
             OssUploadImpl.uploadFile(owner, filePathUri, type, spaceType, complete, error)
         }else if(UPLOAD_WAY_TYPE == 1){
             AwsUploadImpl.uploadFile(owner, filePathUri, type, spaceType, complete, error)
-           // ImUploadImpl.uploadFile(owner, filePathUri, type, spaceType, complete, error)
-        }else {
+        }else{
             ImUploadImpl.uploadFile(owner, filePathUri, type, spaceType, complete, error)
-        }*/
-
-        AwsUploadImpl.uploadFile(owner, filePathUri, type, spaceType, complete, error)
+        }
     }
 }
 
