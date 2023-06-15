@@ -47,6 +47,7 @@ object HttpManager {
                 }
                 .addHeader("versionName", BaseApp.VERSION_NAME)
                 .addHeader("versionCode", BaseApp.VERSION_CODE.toString()).build()
+
     }
 
     private var backupLoginHostInterceptor = BackupLoginHostInterceptor()

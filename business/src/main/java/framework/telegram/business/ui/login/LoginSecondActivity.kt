@@ -39,7 +39,7 @@ import kotlinx.android.synthetic.main.bus_login_activity_second.*
 @Route(path = Constant.ARouter.ROUNTE_BUS_LOGIN_SECOND)
 class LoginSecondActivity : BaseBusinessActivity<LoginContract.Presenter>(), LoginContract.View {
 
-    private var mType: Int = 1 //0:密码登录   1：验证码登录
+    private var mType: Int = 0 //0:密码登录   1：验证码登录
 
     private val accountInfo by lazy { AccountManager.getLoginAccountByUuid(AccountManager.getLastLoginAccountUuid(), AccountInfo::class.java) }
 
@@ -124,7 +124,7 @@ class LoginSecondActivity : BaseBusinessActivity<LoginContract.Presenter>(), Log
     }
 
     override fun initListen() {
-        linear_layout_all.viewTreeObserver.addOnGlobalLayoutListener {
+        /*linear_layout_all.viewTreeObserver.addOnGlobalLayoutListener {
             val r = Rect()
             //获取当前界面可视部分
             this@LoginSecondActivity.window.decorView.getWindowVisibleDisplayFrame(r)
@@ -139,7 +139,7 @@ class LoginSecondActivity : BaseBusinessActivity<LoginContract.Presenter>(), Log
                 linear_layout_all.translationY = 0f
                 custom_toolbar.androidMTransparency(false)
             }
-        }
+        }*/
 
         text_view_change.setOnClickListener {
             mType = if (mType == 0) 1 else 0
